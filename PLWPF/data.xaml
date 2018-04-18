@@ -1,0 +1,36 @@
+﻿<Window x:Class="PLWPF.data"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PLWPF"
+        mc:Ignorable="d"
+        Title="data" SizeToContent="WidthAndHeight" Height="Auto" Width="Auto" Icon="images/icon.png" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <TabControl TabStripPlacement="Left">
+            <TabControl.Items>
+                <TabItem Header="specializtions" Background="DodgerBlue">
+                    <TabItem.Content>
+                        <DataGrid ItemsSource="{Binding mumhiut,Mode=OneTime}" IsReadOnly="True" RowStyle="{StaticResource myGridStyle}"/>
+                    </TabItem.Content>
+                </TabItem>
+                <TabItem Header="employees" Background="DeepSkyBlue">
+                    <TabItem.Content>
+                        <DataGrid ItemsSource="{Binding oved,Mode=OneTime}" IsReadOnly="True" RowStyle="{StaticResource myGridStyle}"/>
+                    </TabItem.Content>
+                </TabItem>
+                <TabItem Header="employers" Background="SkyBlue">
+                    <TabItem.Content>
+                        <DataGrid ItemsSource="{Binding maavid,Mode=OneTime}" IsReadOnly="True" RowStyle="{StaticResource myGridStyle}"/>
+                    </TabItem.Content>
+                </TabItem>
+                <TabItem Header="contracts" Background="PaleTurquoise">
+                    <TabItem.Content>
+                        <DataGrid ItemsSource="{Binding hoze,Mode=OneTime}" IsReadOnly="True" RowStyle="{StaticResource myGridStyle}">
+                        </DataGrid>
+                    </TabItem.Content>
+                </TabItem>
+            </TabControl.Items>
+        </TabControl>
+    </Grid>
+</Window>

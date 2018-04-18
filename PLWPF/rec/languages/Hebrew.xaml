@@ -1,0 +1,108 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    
+                    xmlns:System="clr-namespace:System;assembly=mscorlib">
+
+
+    <System:Int32 x:Key="labelColnm">1</System:Int32>
+    <System:Int32 x:Key="inputColnm">0</System:Int32>
+
+    <!--add and remove buttons-->
+    <System:Int32 x:Key="addColnm">2</System:Int32>
+    <System:Int32 x:Key="removeColnm">0</System:Int32>
+    
+    <Style x:Key="LabelAlinment" TargetType="Label">
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+    </Style>
+
+    <GridLength x:Key="colnm0">200*</GridLength>
+    <GridLength x:Key="colnm1">105</GridLength>
+    
+    <!--Categories Window-->
+    <System:String x:Key="specializationString">מומחיות</System:String>
+    <System:String x:Key="employeeString">עובדים</System:String>
+    <System:String x:Key="employerString">מעסיקים</System:String>
+    <System:String x:Key="contractsString">חוזים</System:String>
+    <System:String x:Key="revenueString">רווחים</System:String>
+    <System:String x:Key="emailsenderString">שליחת אימיילים קבוצתית</System:String>
+    <System:String x:Key="groupsString">קבוצות</System:String>
+    <System:String x:Key="generalString">מידע כללי</System:String>
+    <System:String x:Key="updatelString">עדכון פרטים</System:String>
+    <System:String x:Key="titleString">!בעזרת ה' נעשה ונצליח</System:String>
+
+    <!--add update remove-->
+    <System:String x:Key="addString">הוסף</System:String>
+    <System:String x:Key="updateString">עדכן</System:String>
+    <System:String x:Key="removeString">מחק</System:String>
+    
+    <!--Spezialization Window-->
+    <System:String x:Key="specializationIDString">מספר</System:String>
+    <System:String x:Key="specializationNameString">שם</System:String>
+    <System:String x:Key="specializationFieldString">תחום</System:String>
+    <System:String x:Key="minWageString">שכר מינימום</System:String>
+    <System:String x:Key="maxWageString">שכר מקסימום</System:String>
+
+    <!--Employee window-->
+    <System:String x:Key="employeeIDString">תעודת זהות</System:String>
+    <System:String x:Key="employeeFirstNameString">שם פרטי</System:String>
+    <System:String x:Key="employeeLastNameString">משפחה</System:String>
+    <System:String x:Key="employeeBirthDayString">תאריך לידה</System:String>
+    <System:String x:Key="employeePhoneString">מספר טלפון</System:String>
+    <System:String x:Key="employeeCellPhoneString">טלפון נייד</System:String>
+    <System:String x:Key="employeeCityString">ישוב</System:String>
+    <System:String x:Key="employeeAddressString">כתובת</System:String>
+    <System:String x:Key="employeeEmailString">דואר אלקטרוני</System:String>
+    <System:String x:Key="employeeDegreeString">תואר</System:String>
+    <System:String x:Key="employeeAfterArmyString">אחרי צבא</System:String>
+    <System:String x:Key="employeeBankInfoString">פרטי חשבון בנק</System:String>
+    <System:String x:Key="employeeAccountNumberString">מספר חשבון</System:String>
+    <System:String x:Key="employeeSpecializationString">מומחיות</System:String>
+    <System:String x:Key="employeeStatusString">סטטוס</System:String>
+    <System:String x:Key="employeeNumberOfJobsString">מספר עבודות</System:String>
+    <System:String x:Key="employeeBankToolTiptring">בנק: שם, ישוב, מספר סניף</System:String>
+
+    <!--Employer Window-->
+
+    <GridLength x:Key="employerMainGridcolnm0">70*</GridLength>
+    <GridLength x:Key="employerMainGridcolnm1">95*</GridLength>
+    
+    <System:String x:Key="employerFreelancerString">פרילנסר</System:String>
+    <System:String x:Key="employerCompanyString">חברה בע"מ</System:String>
+
+    <System:String x:Key="employerIDString">מספר מזהה</System:String>
+    <System:String x:Key="employerFirstNameString">שם פרטי</System:String>
+    <System:String x:Key="employerLastNameString">משפחה</System:String>
+    <System:String x:Key="employerCompanyNameString">שם החברה</System:String>
+    <System:String x:Key="employerPhoneString">מספר טלפון</System:String>
+    <System:String x:Key="employerEmailString">דואר אלקטרוני</System:String>
+    <System:String x:Key="employerAreaString">אזור</System:String>
+    <System:String x:Key="employerAddressString">כתובת</System:String>
+    <System:String x:Key="employerBirthString">תאריך הקמת העסק</System:String>
+    <System:String x:Key="employerFieldString">תחום</System:String>
+    <System:String x:Key="employerStatusString">סטטוס</System:String>
+    <System:String x:Key="employerNumofEmployeesString">מספר עובדים</System:String>
+    <System:String x:Key="employerNumofEmployeesNeededString">מספר דרושים</System:String>
+
+
+    <!--Contract Window-->
+    <System:String x:Key="contractIDString">מספר מזהה</System:String>
+    <System:String x:Key="contractEmployerString">מעסיק</System:String>
+    <System:String x:Key="contractEmployeeString">עובד</System:String>
+    <System:String x:Key="contractInterviewString">ראיון</System:String>
+    <System:String x:Key="contractSignedString">חוזה נחתם</System:String>
+    <System:String x:Key="contractGrossString">ברוטו</System:String>
+    <System:String x:Key="contractNetString">נטו</System:String>
+    <System:String x:Key="contractBeginString">תחילת העסקה</System:String>
+    <System:String x:Key="contractEndString">סיום העסקה</System:String>
+    <System:String x:Key="contractHoursString">שעות לחודש</System:String>
+    <System:String x:Key="contractDaysOffString">ימי חופשה לשנה</System:String>
+    <System:String x:Key="contractPensionString">פנסיה</System:String>
+
+
+    <!--Email Window-->
+    <System:String x:Key="emailTitleString">שלח אימיילים לקבוצות</System:String>
+    <System:String x:Key="emailallString">כולם</System:String>
+    <System:String x:Key="emailSubjectString">נושא</System:String>
+    <System:String x:Key="emailBodyString">גוף</System:String>
+    <System:String x:Key="emailsendString">שלח</System:String>
+</ResourceDictionary>

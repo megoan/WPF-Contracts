@@ -1,0 +1,110 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                   
+                    xmlns:System="clr-namespace:System;assembly=mscorlib">
+
+    
+    <System:Int32 x:Key="labelColnm">0</System:Int32>
+    <System:Int32 x:Key="inputColnm">1</System:Int32>
+
+    <!--add and remove buttons-->
+    <System:Int32 x:Key="addColnm">0</System:Int32>
+    <System:Int32 x:Key="removeColnm">2</System:Int32>
+
+    <Style x:Key="LabelAlinment" TargetType="Label">
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+    </Style>
+
+    <GridLength x:Key="colnm0">105</GridLength>
+    <GridLength x:Key="colnm1">200*</GridLength>
+    
+    
+    
+    
+    <!--Categories Window-->
+    <System:String x:Key="specializationString">SPECIALIZATION</System:String>
+    <System:String x:Key="employeeString">EMPLOYEES</System:String>
+    <System:String x:Key="employerString">EMPLOYERS</System:String>
+    <System:String x:Key="contractsString">CONTRACTS</System:String>
+    <System:String x:Key="revenueString">ANNUAL REVENUE</System:String>
+    <System:String x:Key="emailsenderString">GROUP EMAIL SENDER</System:String>
+    <System:String x:Key="groupsString">GROUPS</System:String>
+    <System:String x:Key="generalString">GENERAL INFO</System:String>
+    <System:String x:Key="updatelString">UPDATE INFO</System:String>
+    <System:String x:Key="titleString">Change to hebrew!</System:String>
+    
+    <!--add update remove-->
+    <System:String x:Key="addString">ADD</System:String>
+    <System:String x:Key="updateString">UPDATE</System:String>
+    <System:String x:Key="removeString">REMOVE</System:String>
+    
+<!--Spezialization Window-->
+    <System:String x:Key="specializationIDString">number</System:String>
+    <System:String x:Key="specializationNameString">name</System:String>
+    <System:String x:Key="specializationFieldString">field</System:String>
+    <System:String x:Key="minWageString">wage minimum</System:String>
+    <System:String x:Key="maxWageString">wage maximum</System:String>
+    
+  <!--Employee window-->
+    <System:String x:Key="employeeIDString">ID</System:String>
+    <System:String x:Key="employeeFirstNameString">First name</System:String>
+    <System:String x:Key="employeeLastNameString">Last name</System:String>
+    <System:String x:Key="employeeBirthDayString">Birthday</System:String>
+    <System:String x:Key="employeePhoneString">Phone number</System:String>
+    <System:String x:Key="employeeCellPhoneString">Cell phone</System:String>
+    <System:String x:Key="employeeCityString">City</System:String>
+    <System:String x:Key="employeeAddressString">Address</System:String>
+    <System:String x:Key="employeeEmailString">Email</System:String>
+    <System:String x:Key="employeeDegreeString">Degree</System:String>
+    <System:String x:Key="employeeAfterArmyString">After army</System:String>
+    <System:String x:Key="employeeBankInfoString">Bank info</System:String>
+    <System:String x:Key="employeeAccountNumberString">Account number</System:String>
+    <System:String x:Key="employeeSpecializationString">Specialization</System:String>
+    <System:String x:Key="employeeStatusString">Status</System:String>
+    <System:String x:Key="employeeNumberOfJobsString">Number of Jobs</System:String>
+    <System:String x:Key="employeeBankToolTiptring">Bank: name, city, branch id</System:String>
+    
+    <!--Employer Window-->
+
+    <GridLength x:Key="employerMainGridcolnm0">95*</GridLength>
+    <GridLength x:Key="employerMainGridcolnm1">70*</GridLength>
+
+    <System:String x:Key="employerFreelancerString">Freelancer</System:String>
+    <System:String x:Key="employerCompanyString">Company</System:String>
+
+    <System:String x:Key="employerIDString">ID</System:String>
+    <System:String x:Key="employerFirstNameString">First name</System:String>
+    <System:String x:Key="employerLastNameString">Last name</System:String>
+    <System:String x:Key="employerCompanyNameString">Company name</System:String>
+    <System:String x:Key="employerPhoneString">Phone number</System:String>
+    <System:String x:Key="employerEmailString">Email</System:String>
+    <System:String x:Key="employerAreaString">Area</System:String>
+    <System:String x:Key="employerAddressString">Address</System:String>
+    <System:String x:Key="employerBirthString">Establishment date</System:String>
+    <System:String x:Key="employerFieldString">Field</System:String>
+    <System:String x:Key="employerStatusString">Status</System:String>
+    <System:String x:Key="employerNumofEmployeesString">Num of employees</System:String>
+    <System:String x:Key="employerNumofEmployeesNeededString">Employees needed</System:String>
+
+    <!--Contract Window-->
+    <System:String x:Key="contractIDString">contract ID</System:String>
+    <System:String x:Key="contractEmployerString">Employer</System:String>
+    <System:String x:Key="contractEmployeeString">Employee</System:String>
+    <System:String x:Key="contractInterviewString">Interview</System:String>
+    <System:String x:Key="contractSignedString">Contract signed</System:String>
+    <System:String x:Key="contractGrossString">Gross</System:String>
+    <System:String x:Key="contractNetString">Net</System:String>
+    <System:String x:Key="contractBeginString">Employment begin</System:String>
+    <System:String x:Key="contractEndString">Employment end</System:String>
+    <System:String x:Key="contractHoursString">Hours a month</System:String>
+    <System:String x:Key="contractDaysOffString">Days off a year</System:String>
+    <System:String x:Key="contractPensionString">Pension</System:String>
+
+    <!--Email Window-->
+    <System:String x:Key="emailTitleString">Send Email to Groups</System:String>
+    <System:String x:Key="emailallString">Everyone</System:String>
+    <System:String x:Key="emailSubjectString">Subject</System:String>
+    <System:String x:Key="emailBodyString">Body</System:String>
+    <System:String x:Key="emailsendString">Send</System:String>
+    
+</ResourceDictionary>

@@ -1,0 +1,356 @@
+﻿<Window x:Class="PLWPF.Contracts"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
+        xmlns:local="clr-namespace:PLWPF"
+        xmlns:System="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"
+          Title="Contracts" Height="434" Width="500" WindowStartupLocation="CenterScreen"  Icon="images/icon.png" x:Name="root">
+    <Window.Resources>
+        <local:StringToImageSourceConverter x:Key="stringToImageSourceConverter" />
+        <local:flipBoolean x:Key="flipboolean" />
+        <local:numberToSpecialization x:Key="_numberToSpecialization"/>
+        <local:numberToEmployer x:Key="_numToEmployer" />
+        <local:numberToemployee x:Key="_numToEmployee"/>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="496*"/>
+            <RowDefinition Height="40*"/>
+        </Grid.RowDefinitions>
+        <Grid  Grid.Row="0" Background="{DynamicResource radioBootonHeaderColor}" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <RadioButton x:Name="addRadioButton" Content="{DynamicResource addString}" Grid.Column="{DynamicResource addColnm}" VerticalAlignment="Center" HorizontalAlignment="Center" IsChecked="True" Checked="addRadioButton_Checked" />
+            <RadioButton x:Name="updateRadioButton" Content="{DynamicResource updateString}" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Checked="updateRadioButton_Checked"  />
+            <RadioButton x:Name="removeRadioButton" Content="{DynamicResource removeString}" Grid.Column="{DynamicResource removeColnm}" VerticalAlignment="Center" HorizontalAlignment="Center" Checked="removeRadioButton_Checked" />
+        </Grid>
+        <Grid Grid.Row="2" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="addbutton" Grid.Column="{DynamicResource addColnm}" Content="{DynamicResource addString}" Click="addbutton_Click" Background="{DynamicResource radioBootonHeaderColor}">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Button.IsEnabled" Value="false"/>
+                        <Style.Triggers>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding IsChecked, ElementName=addRadioButton}" Value="True"/>
+                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=grossTextBox}" Value="false"/>
+                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=hoursAmonthTextBox}" Value="false"/>
+                                </MultiDataTrigger.Conditions>
+                                <MultiDataTrigger.Setters>
+                                    <Setter Property="Button.IsEnabled" Value="true"/>
+                                </MultiDataTrigger.Setters>
+                            </MultiDataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Button x:Name="updatebutton" Grid.Column="1" Content="{DynamicResource updateString}" Click="updatebutton_Click"  Background="{DynamicResource radioBootonHeaderColor}">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Button.IsEnabled" Value="false"/>
+                        <Style.Triggers>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding IsChecked, ElementName=updateRadioButton}" Value="True"/>
+                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=grossTextBox}" Value="false"/>
+                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=hoursAmonthTextBox}" Value="false"/>
+                                   
+                                </MultiDataTrigger.Conditions>
+                                <MultiDataTrigger.Setters>
+                                    <Setter Property="Button.IsEnabled" Value="true"/>
+                                </MultiDataTrigger.Setters>
+                            </MultiDataTrigger>
+                            <DataTrigger Binding="{Binding Path=Text, ElementName=grossTextBox}" Value="">
+                                <Setter Property="Button.IsEnabled" Value="false"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Button x:Name="removebutton" Grid.Column="{DynamicResource removeColnm}" Content="{DynamicResource removeString}" Click="removebutton_Click" Background="{DynamicResource radioBootonHeaderColor}">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Button.IsEnabled" Value="false"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsChecked, ElementName=removeRadioButton}" Value="True">
+                                <Setter Property="Button.IsEnabled" Value="true"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </Grid>
+        <StackPanel x:Name="list"  Grid.Row="1" Background="{DynamicResource categoryBackground}" >
+            <ComboBox x:Name="listOfContractsComboBox" SelectionChanged="listOfContracts_SelectionChanged" IsSynchronizedWithCurrentItem="True">
+                <ComboBox.Background>
+                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                        <GradientStop Color="#FF317FB6" Offset="0"/>
+                        <GradientStop Color="#FFA8D5DC" Offset="1"/>
+                    </LinearGradientBrush>
+                </ComboBox.Background>
+                <ComboBox.Style>
+                    <Style TargetType="{x:Type ComboBox}">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsChecked, ElementName=updateRadioButton}" Value="True">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding IsChecked, ElementName=removeRadioButton}" Value="True">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ComboBox.Style>
+            </ComboBox>
+            <Grid  Grid.Row="1"  Height="399" VerticalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="{DynamicResource employerMainGridcolnm0}"/>
+                    <ColumnDefinition Width="{DynamicResource employerMainGridcolnm1}"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="{DynamicResource labelColnm}" Margin="0,0,0,-41" >
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="{DynamicResource colnm0}"/>
+                            <ColumnDefinition Width="{DynamicResource colnm1}"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="{DynamicResource labelColnm}"  >
+                            <Label x:Name="contract_ID" Content="{DynamicResource contractIDString}" Style="{StaticResource LabelAlinment}"/>
+                            <Label x:Name="theEmployer" Content="{DynamicResource contractEmployerString}" Style="{StaticResource LabelAlinment}"/>
+                            <Label x:Name="theEmployee" Content="{DynamicResource contractEmployeeString}" Style="{StaticResource LabelAlinment}"/>
+                            <Label x:Name="interview" Content="{DynamicResource contractInterviewString}" Style="{StaticResource LabelAlinment}"/>
+                            
+
+                            <Label x:Name="contractSigned" Content="{DynamicResource contractSignedString}" Style="{StaticResource LabelAlinment}"/>
+                            <Label x:Name="theGroos" Content="{DynamicResource contractGrossString}" Style="{StaticResource LabelAlinment}"/>
+                            <Label x:Name="theNet" Content="{DynamicResource contractNetString}" Style="{StaticResource LabelAlinment}"/>
+                            <Label x:Name="employmentBegin" Content="{DynamicResource contractBeginString}" Style="{StaticResource LabelAlinment}"/>
+                            <Label x:Name="employmentEnd" Content="{DynamicResource contractEndString}" Style="{StaticResource LabelAlinment}"/>
+                            <Label x:Name="hoursAmonth" Content="{DynamicResource contractHoursString}" Style="{StaticResource LabelAlinment}"/>
+                            <Label x:Name="daysOff" Content="{DynamicResource contractDaysOffString}" Style="{StaticResource LabelAlinment}"/>
+                            <Label x:Name="thePension" Content="{DynamicResource contractPensionString}" Style="{StaticResource LabelAlinment}"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="{DynamicResource inputColnm}" >
+                            <Label x:Name="numberlabel5" Content="{Binding contractNum, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Height="26">
+                                <Label.Style>
+                                    <Style TargetType="{x:Type Label}">
+                                        <Setter Property="Button.IsEnabled" Value="true"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding IsChecked, ElementName=removeRadioButton}" Value="True">
+                                                <Setter Property="Button.IsEnabled" Value="False"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Label.Style>
+                            </Label>
+                            <ComboBox x:Name="employerComboBox" Height="26" IsSynchronizedWithCurrentItem="True" SelectedItem="{Binding Path=employerID,Mode=TwoWay,Converter={StaticResource _numToEmployer}}" MouseEnter="employerInfo"  >
+                                <ComboBox.Style>
+                                    <Style TargetType="{x:Type ComboBox}">
+                                        <Setter Property="Button.IsEnabled" Value="true"/>
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding IsChecked, ElementName=removeRadioButton}" Value="True">
+                                                <Setter Property="Button.IsEnabled" Value="False"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </ComboBox.Style>
+                            </ComboBox>
+                            <ComboBox x:Name="employeeComboBox" Height="26" IsSynchronizedWithCurrentItem="True" SelectedItem="{Binding employeeID,Mode=TwoWay, Converter={StaticResource _numToEmployee}}" MouseEnter="showInfoemployee">
+                                <ComboBox.Style>
+                                    <Style TargetType="{x:Type ComboBox}">
+                                        <Setter Property="IsEnabled" Value="true"/>
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding IsChecked, ElementName=removeRadioButton}" Value="True">
+                                                <Setter Property="IsEnabled" Value="False"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </ComboBox.Style>
+                            </ComboBox>
+                            <CheckBox x:Name="interviewTextBox" Height="26" IsChecked="{Binding interview, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}">
+                                <CheckBox.Style>
+                                    <Style TargetType="{x:Type CheckBox}">
+                                        <Setter Property="Button.IsEnabled" Value="true"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding IsChecked, ElementName=removeRadioButton}" Value="True">
+                                                <Setter Property="Button.IsEnabled" Value="False"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </CheckBox.Style>
+                            </CheckBox>
+                            <CheckBox x:Name="contractsignedcheckBox" Height="26" IsChecked="{Binding contractSignd, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}">
+                                <CheckBox.Style>
+                                    <Style TargetType="{x:Type CheckBox}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding IsChecked, ElementName=removeRadioButton}" Value="True">
+                                                <Setter Property="Button.IsEnabled" Value="False"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding ElementName=grossTextBox, Path=Text}" Value="">
+                                                <Setter Property="Button.IsEnabled" Value="false"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding ElementName=interviewTextBox, Path=Text}" Value="">
+                                                <Setter Property="Button.IsEnabled" Value="false"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding ElementName=hoursAmonthTextBox, Path=Text}" Value="">
+                                                <Setter Property="Button.IsEnabled" Value="false"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding ElementName=hoursAmonthTextBox, Path=Text}" Value="">
+                                                <Setter Property="Button.IsEnabled" Value="false"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </CheckBox.Style>
+                            </CheckBox>
+                            <TextBox x:Name="grossTextBox" Height="26" TextWrapping="Wrap" Validation.Error="TextBox_Error">
+                                <Binding Path="gross" ValidatesOnExceptions="true" Mode="TwoWay" ValidatesOnDataErrors="True" NotifyOnValidationError="True" UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <local:DemoValidator/>
+                                    </Binding.ValidationRules>
+                                </Binding>
+                                <TextBox.Style>
+                                    <Style TargetType="{x:Type TextBox}">
+                                        <Setter Property="Button.IsEnabled" Value="true"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding IsChecked, ElementName=removeRadioButton}" Value="True">
+                                                <Setter Property="Button.IsEnabled" Value="False"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBox.Style>
+                            </TextBox>
+                            <Label x:Name="netTextBox" Height="26">
+                                <Binding Path="net" ValidatesOnExceptions="true" ValidatesOnDataErrors="True" Mode="TwoWay"  NotifyOnValidationError="True" >
+                                    <Binding.ValidationRules>
+                                        <local:DemoValidator/>
+                                    </Binding.ValidationRules>
+                                </Binding>
+                                <Label.Style>
+                                    <Style TargetType="{x:Type Label}">
+                                        <Setter Property="Button.IsEnabled" Value="true"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding IsChecked, ElementName=removeRadioButton}" Value="True">
+                                                <Setter Property="Button.IsEnabled" Value="False"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Label.Style>
+                            </Label>
+                            <DatePicker x:Name="employeeBeginDatePicker" DisplayDateStart="{x:Static System:DateTime.Now}"  SelectedDate="{Binding employementBegin, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Height="26" Background="#7FFFAB19">
+
+                                <DatePicker.Style>
+                                    <Style TargetType="{x:Type DatePicker}">
+                                        <Setter Property="Button.IsEnabled" Value="true"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding IsChecked, ElementName=removeRadioButton}" Value="True">
+                                                <Setter Property="Button.IsEnabled" Value="False"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </DatePicker.Style>
+                            </DatePicker>
+                            <DatePicker x:Name="employeeEndDatePicker" DisplayDateStart="{x:Static System:DateTime.Now}" SelectedDate="{Binding employementEnd, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Height="26" Background="#7FFFAB19">
+                                <DatePicker.Style>
+                                    <Style TargetType="{x:Type DatePicker}">
+                                        <Setter Property="Button.IsEnabled" Value="true"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding IsChecked, ElementName=removeRadioButton}" Value="True">
+                                                <Setter Property="Button.IsEnabled" Value="False"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </DatePicker.Style>
+                            </DatePicker>
+
+                            <TextBox x:Name="hoursAmonthTextBox" Height="26" TextWrapping="Wrap"  Validation.Error="TextBox_Error">
+                                <Binding Path="monthHours" ValidatesOnExceptions="true" Mode="TwoWay" ValidatesOnDataErrors="True" NotifyOnValidationError="True" UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <local:DemoValidator/>
+                                    </Binding.ValidationRules>
+                                </Binding>
+                                <TextBox.Style>
+                                    <Style TargetType="{x:Type TextBox}">
+                                        <Setter Property="Button.IsEnabled" Value="true"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding IsChecked, ElementName=removeRadioButton}" Value="True">
+                                                <Setter Property="Button.IsEnabled" Value="False"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBox.Style>
+                            </TextBox>
+                            <local:UserControl1 x:Name="DaysOff" MyProperty="{Binding Path=DaysOffAYear ,Mode=TwoWay,ValidatesOnDataErrors=True,ValidatesOnExceptions=True,NotifyOnValidationError=True}">
+                            </local:UserControl1>
+                            <Label x:Name="pensionTextBox" Height="26" Validation.Error="TextBox_Error">
+                                <Binding Path="Pension" Mode="TwoWay" ValidatesOnExceptions="true" ValidatesOnDataErrors="True" NotifyOnValidationError="True" >
+                                    <Binding.ValidationRules>
+                                        <local:DemoValidator/>
+                                    </Binding.ValidationRules>
+                                </Binding>
+                                <Label.Style>
+                                    <Style TargetType="{x:Type Label}">
+                                        <Setter Property="Button.IsEnabled" Value="true"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding IsChecked, ElementName=removeRadioButton}" Value="True">
+                                                <Setter Property="Button.IsEnabled" Value="False"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Label.Style>
+                            </Label>
+                           
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Column="{DynamicResource inputColnm}" Margin="0,0,0,59" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="261*"/>
+                        <RowDefinition Height="25*"/>
+                        <RowDefinition Height="54*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Margin="0,0,0,1" />
+                    <wpfTool:RichTextBox x:Name="summaryTextBox2" Text="{Binding ExtraInfo, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="0,0,0,1">
+                        <wpfTool:RichTextBox.Style>
+                            <Style TargetType="{x:Type wpfTool:RichTextBox}">
+                                <Setter Property="Button.IsEnabled" Value="true"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsChecked, ElementName=removeRadioButton}" Value="True">
+                                        <Setter Property="Button.IsEnabled" Value="False"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </wpfTool:RichTextBox.Style>
+                    </wpfTool:RichTextBox>
+                    <Button x:Name="button" Content="Export to PDF" Grid.Row="1" Background="{DynamicResource radioBootonHeaderColor}" Click="button_Click">
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Button.IsEnabled" Value="false"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsEnabled, ElementName=addbutton}" Value="True">
+                                        <Setter Property="Button.IsEnabled" Value="true"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding IsEnabled, ElementName=updatebutton}" Value="True">
+                                        <Setter Property="Button.IsEnabled" Value="true"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                </Grid>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Window>
